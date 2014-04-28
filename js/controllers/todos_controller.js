@@ -15,8 +15,21 @@ Todos.TodosController = Ember.ArrayController.extend({
 
       // Save the new model
       todo.save();
+    },
+    removeCompleted: function() {
+      var todos = this.filterBy('isCompleted', true);
+      todos.invoke('deleteRecord');
+      todos.invoke('save');
     }
   },
+  hasCompleted: function() {
+    return this.get('completed') > 0;
+  }.property('completed'),
+
+  completed: function() {
+    return this.filterBy('isCompleted', true).get('length');
+  }.property('@each.isCompleted'),
+
   remaining: function() {
     return this.filterBy('isCompleted', false).get('length');
   }.property('@each.isCompleted'),
@@ -24,5 +37,15 @@ Todos.TodosController = Ember.ArrayController.extend({
   inflection: function() {
     var remaining = this.get('remaining');
     return remaining === 1 ? 'item' : 'items';
-  }.property('remaining')
+  }.property('remaining'),
+
+  allAreDone: function(key, value) {
+    if (value === undefined) {
+      return !!this.get('length') && this.everyProperty('isCompleted', true);
+    } else {
+      this.setEach('isCompleted', value);
+      this.invoke('save');
+      return value;
+    }
+  }.property('@each.isCompleted')
 });

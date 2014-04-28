@@ -16,8 +16,7 @@
 
         <section id="main">
           {{outlet}}
-
-          <input type="checkbox" id="toggle-all">
+          {{input type="checkbox" id="toggle-all" checked=allAreDone}}
         </section>
 
         <footer id="footer">
@@ -35,10 +34,9 @@
               {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
             </li>
           </ul>
-
-          <button id="clear-completed">
-            Clear completed (1)
-          </button>
+          {{#if hasCompleted}}
+            <button {{action "removeCompleted"}} id="clear-completed" class="destroy">Delete Completed({{completed}})</button>
+          {{/if}}
         </footer>
       </section>
 
