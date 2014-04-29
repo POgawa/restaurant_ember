@@ -2,7 +2,7 @@ Restaurant.Router.map(function() {
   this.resource('tables', { path: '/' }, function () {
     // this.route('active');
     // this.route('completed');
-    // this.resource('menuitems', { path: '/menuitems' });
+    this.resource('tables', { path: '/tables' });
   });
 });
 
@@ -12,12 +12,12 @@ Restaurant.TablesRoute = Ember.Route.extend({
   }
 });
 // Restaurant.IndexRoute = Ember.Route.extend({
-//   renderTemplate : function() {
+//   renderTemplate: function() {
 //     this.render('index');
-//     // this.render('menuitems', {
-//     //   outlet : 'menuitems',
-//     //   into   : 'index'
-//     // });
+//     this.render('tables', {
+//       outlet : 'tables',
+//       into   : 'index'
+//     });
 //   }
 // });
 
