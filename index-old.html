@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <script type="text/x-handlebars" data-template-name="tables">
+      <section id="tableapp">
+        <header id="header">
+          <h1>Tables</h1>
+          {{input type="text" id="new-table" placeholder="Please add table" value=newTable_id action="createTable"}}
+        </header>
+
+        <section id="main">
+          {{outlet}}
+        </section>
+
+      </section>
+
+      <footer id="info">
+        <p>Double-click to edit a table</p>
+        <p>{{#link-to 'menuitems'}}View Menu{{/link-to}}</p>
+
+      </footer>
+
+      <section>
+        {{outlet menuitems}}
+      </section>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="servers/index">
+      <ul id="server-list">
+        {{#each itemController="server"}}
+          <li {{bind-attr class="isEditing:editing"}}>
+            {{#if isEditing}}
+              {{edit-server class="edit" value=name focus-out="acceptChanges" insert-newline="acceptChanges"}}
+            {{else}}
+              <label {{action "editServer" on="doubleClick"}}>{{name}}</label><button {{action "removeServer"}} class="destroy"></button>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+    </script>
+
+
+
+    <script type="text/x-handlebars" data-template-name="menuitems">
+      <section id="menu">
+        <header id="header">
+          <h1>Menu</h1>
+          {{input type="text" id="new-menuitem-name" placeholder="Add Menu Item Name" value=newName}}
+          {{input type="text" id="new-menuitem-description" placeholder="Add Menu Item Description" value=newDescription}}
+          {{input type="text" id="new-menuitem-cost" placeholder="Add Menu Item Cost" value=newCost}}
+          <button {{action 'createMenuitem'}}>Add Menu Item</button>
+        </header>
+
+        <section id="main">
+          {{outlet}}
+        </section>
+      </section>
+
+      <footer id="info">
+        <p>Double-click to edit menu item</p>
+      </footer>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="menuitems/index">
+      <section id="menuitem-main">
+        <ul id="menuitem-list">
+          {{#each itemController="menuitem"}}
+            <li {{bind-attr class="isEditing:editing"}}>
+              {{#if isEditing}}
+                {{edit-menuitem class="edit" value=name focus-out="acceptChanges" insert-newline="acceptChanges"}}
+                {{edit-menuitem class="edit" value=description focus-out="acceptChanges" insert-newline="acceptChanges"}}
+                {{edit-menuitem class="edit" value=cost focus-out="acceptChanges" insert-newline="acceptChanges"}}
+              {{else}}
+                <button {{action "removeMenuitem"}} class="destroy"></button>
+                <label {{action "editMenuitem" on="doubleClick"}}>{{name}}</label>
+                <label {{action "editMenuitem" on="doubleClick"}}>{{cost}}</label>
+                <br>
+                <label {{action "editMenuitem" on="doubleClick"}}>{{description}}</label>
+              {{/if}}
+            </li>
+          {{/each}}
+        </ul>
+      </section>
+    </script>
+
+    <script src="js/libs/jquery-1.10.2.min.js"></script>
+    <script src="js/libs/handlebars-1.0.0.js"></script>
+    <script src="js/libs/ember.js"></script>
+    <script src="js/libs/ember-data.js"></script>
+    <script src="js/libs/localstorage_adapter.js"></script>
+    <script src="js/application.js"></script>
+    <script src="js/router.js"></script>
+
+    <script src="js/models/server.js"></script>
+    <script src="js/controllers/servers_controller.js"></script>
+    <script src="js/controllers/server_controller.js"></script>
+    <script src="js/views/edit_server_view.js"></script>
+
+    <script src="js/models/menuitem.js"></script>
+    <script src="js/controllers/menuitems_controller.js"></script>
+    <script src="js/controllers/menuitem_controller.js"></script>
+    <script src="js/views/edit_menuitem_view.js"></script>
+
+    <script src="js/models/table.js"></script>
+    <script src="js/controllers/tables_controller.js"></script>
+    <script src="js/controllers/table_controller.js"></script>
+    <script src="js/views/edit_table_view.js"></script>
+  </body>
+table

@@ -3,40 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title>Restaurant</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.css">
   </head>
   <body>
 
-    <script type="text/x-handlebars" data-template-name="servers">
-      <section id="serverapp">
-        <header id="header">
-          <h1>Servers</h1>
-          {{input type="text" id="new-server" placeholder="Please add server" value=newName action="createServer"}}
-        </header>
-
-        <section id="main">
-          {{outlet}}
-        </section>
-
-      </section>
-
-      <footer id="info">
-        <p>Double-click to edit a server</p>
-      </footer>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="servers/index">
-      <ul id="server-list">
-        {{#each itemController="server"}}
-          <li {{bind-attr class="isEditing:editing"}}>
-            {{#if isEditing}}
-              {{edit-server class="edit" value=name focus-out="acceptChanges" insert-newline="acceptChanges"}}
-            {{else}}
-              <label {{action "editServer" on="doubleClick"}}>{{name}}</label><button {{action "removeServer"}} class="destroy"></button>
-            {{/if}}
-          </li>
-        {{/each}}
-      </ul>
+    <script type="text/x-handlebars" data-template-name="tables">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h1>Tables</h1>
+              {{input type="text" id="new-table" placeholder="Please add table" value=newNumber action="createTable"}}
+              <ul id="table-list">
+                {{#each itemController="table"}}
+                  <li {{bind-attr class="isEditing:editing"}}>
+                    {{#if isEditing}}
+                      {{edit-table class="edit" value=number focus-out="acceptChanges" insert-newline="acceptChanges"}}
+                    {{else}}
+                      <label {{action "editTable" on="doubleClick"}}>{{number}}</label><button {{action "removeTable"}} class="destroy"></button>
+                    {{/if}}
+                  </li>
+                {{/each}}
+              </ul>
+          </div>
+        </div>
+      </div>
     </script>
 
     <script src="js/libs/jquery-1.10.2.min.js"></script>
@@ -46,9 +36,9 @@
     <script src="js/libs/localstorage_adapter.js"></script>
     <script src="js/application.js"></script>
     <script src="js/router.js"></script>
-    <script src="js/models/server.js"></script>
-    <script src="js/controllers/servers_controller.js"></script>
-    <script src="js/controllers/server_controller.js"></script>
-    <script src="js/views/edit_server_view.js"></script>
+
+    <script src="js/models/table.js"></script>
+    <script src="js/controllers/tables_controller.js"></script>
+    <script src="js/controllers/table_controller.js"></script>
+    <script src="js/views/edit_table_view.js"></script>
   </body>
-</html>
