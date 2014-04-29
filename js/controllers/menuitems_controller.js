@@ -9,7 +9,7 @@ Restaurant.MenuitemsController = Ember.ArrayController.extend({
       if (!description.trim()) { return; }
 
       var cost = this.get('newCost');
-
+      if (!cost.trim()) { return; }
 
       // Create the new Menuitem model
       var menuitem = this.store.createRecord('menuitem', {

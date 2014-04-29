@@ -12,7 +12,7 @@
     <script type="text/x-handlebars" data-template-name="tables">
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-sm-4">
           <h1>Tables</h1>
             {{input type="text" id="new-table" placeholder="Please add table" value=newNumber action="createTable"}}
             <ul id="table-list">
@@ -29,7 +29,7 @@
             <p>{{#link-to 'menuitems'}}View Menu{{/link-to}}</p>
           </div>
 
-          <div class="col-md-8">
+          <div class="col-sm-8">
             {{outlet}}
           </div>
         </div>
@@ -38,19 +38,18 @@
 
     <script type="text/x-handlebars" data-template-name="menuitems">
       <h1>Menu</h1>
-      {{input type="text" id="new-menuitem-name" placeholder="Name" value=newName}}
-      {{input type="text" id="new-menuitem-description" placeholder="Description" value=newDescription}}
-      {{input type="text" id="new-menuitem-cost" placeholder="Cost" value=newCost}}
-      <button {{action 'createMenuitem'}}>Add Menu Item</button>
+      <p>{{input type="text" id="new-menuitem-name" placeholder="Name" value=newName action='createMenuitem'}}</p>
+      <p>{{input type="text" id="new-menuitem-description" placeholder="Description" value=newDescription action='createMenuitem'}}</p>
+      <p>{{input type="text" id="new-menuitem-cost" placeholder="Cost" value=newCost action='createMenuitem'}}</p>
       <ul id="menuitem-list">
         {{#each itemController="menuitem"}}
           <li {{bind-attr class="isEditing:editing"}}>
             {{#if isEditing}}
-              {{edit-menuitem class="edit" value=name focus-out="acceptChanges" insert-newline="acceptChanges"}}
-              {{edit-menuitem class="edit" value=description focus-out="acceptChanges" insert-newline="acceptChanges"}}
-              {{edit-menuitem class="edit" value=cost focus-out="acceptChanges" insert-newline="acceptChanges"}}
+              {{edit-name class="edit" value=name focus-out="acceptChanges" insert-newline="acceptChanges"}}
+              {{edit-description class="edit" value=description focus-out="acceptChanges" insert-newline="acceptChanges"}}
+              {{edit-cost class="edit" value=cost focus-out="acceptChanges" insert-newline="acceptChanges"}}
             {{else}}
-              <label {{action "editMenuitem" on="doubleClick"}}>{{name}}</label> -
+              <label {{action "editMenuitem" on="doubleClick"}}>{{name}}</label>
               <label {{action "editMenuitem" on="doubleClick"}}>${{cost}}</label>
               <br>
               <label {{action "editMenuitem" on="doubleClick"}}>{{description}}</label>
