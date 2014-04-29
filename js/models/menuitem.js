@@ -1,6 +1,4 @@
 Restaurant.Menuitem = DS.Model.extend({
-  tables: DS.hasMany('tables'),
-
   name: DS.attr('string'),
   description: DS.attr('string'),
   cost: DS.attr('string')

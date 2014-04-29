@@ -13,22 +13,52 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <h1>Tables</h1>
-              {{input type="text" id="new-table" placeholder="Please add table" value=newNumber action="createTable"}}
-              <ul id="table-list">
-                {{#each itemController="table"}}
-                  <li {{bind-attr class="isEditing:editing"}}>
-                    {{#if isEditing}}
-                      {{edit-table class="edit" value=number focus-out="acceptChanges" insert-newline="acceptChanges"}}
-                    {{else}}
-                      <label {{action "editTable" on="doubleClick"}}>{{number}}</label><button {{action "removeTable"}} class="destroy"></button>
-                    {{/if}}
-                  </li>
-                {{/each}}
-              </ul>
+          <h1>Tables</h1>
+            {{input type="text" id="new-table" placeholder="Please add table" value=newNumber action="createTable"}}
+            <ul id="table-list">
+              {{#each itemController="table"}}
+                <li {{bind-attr class="isEditing:editing"}}>
+                  {{#if isEditing}}
+                    {{edit-table class="edit" value=number focus-out="acceptChanges" insert-newline="acceptChanges"}}
+                  {{else}}
+                    <label {{action "editTable" on="doubleClick"}}>{{number}}</label><button {{action "removeTable"}} class="destroy"></button>
+                  {{/if}}
+                </li>
+              {{/each}}
+            </ul>
+            <p>{{#link-to 'menuitems'}}View Menu{{/link-to}}</p>
+          </div>
+
+          <div class="col-md-8">
+            {{outlet}}
           </div>
         </div>
       </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="menuitems">
+      <h1>Menu</h1>
+      {{input type="text" id="new-menuitem-name" placeholder="Name" value=newName}}
+      {{input type="text" id="new-menuitem-description" placeholder="Description" value=newDescription}}
+      {{input type="text" id="new-menuitem-cost" placeholder="Cost" value=newCost}}
+      <button {{action 'createMenuitem'}}>Add Menu Item</button>
+      <ul id="menuitem-list">
+        {{#each itemController="menuitem"}}
+          <li {{bind-attr class="isEditing:editing"}}>
+            {{#if isEditing}}
+              {{edit-menuitem class="edit" value=name focus-out="acceptChanges" insert-newline="acceptChanges"}}
+              {{edit-menuitem class="edit" value=description focus-out="acceptChanges" insert-newline="acceptChanges"}}
+              {{edit-menuitem class="edit" value=cost focus-out="acceptChanges" insert-newline="acceptChanges"}}
+            {{else}}
+              <label {{action "editMenuitem" on="doubleClick"}}>{{name}}</label> -
+              <label {{action "editMenuitem" on="doubleClick"}}>${{cost}}</label>
+              <br>
+              <label {{action "editMenuitem" on="doubleClick"}}>{{description}}</label>
+              <button {{action "removeMenuitem"}} class="destroy"></button>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
     </script>
 
     <script src="js/libs/jquery-1.10.2.min.js"></script>
@@ -43,4 +73,10 @@
     <script src="js/controllers/tables_controller.js"></script>
     <script src="js/controllers/table_controller.js"></script>
     <script src="js/views/edit_table_view.js"></script>
+
+    <script src="js/models/menuitem.js"></script>
+    <script src="js/controllers/menuitems_controller.js"></script>
+    <script src="js/controllers/menuitem_controller.js"></script>
+    <script src="js/views/edit_menuitem_view.js"></script>
+
   </body>

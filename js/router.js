@@ -2,13 +2,19 @@ Restaurant.Router.map(function() {
   this.resource('tables', { path: '/' }, function () {
     // this.route('active');
     // this.route('completed');
-    this.resource('tables', { path: '/tables' });
+    this.resource('menuitems', { path: '/menuitem' });
   });
 });
 
 Restaurant.TablesRoute = Ember.Route.extend({
   model: function() {
     return this.store.find('table');
+  }
+});
+
+Restaurant.MenuitemsRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.find('menuitem');
   }
 });
 // Restaurant.IndexRoute = Ember.Route.extend({

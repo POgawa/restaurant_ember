@@ -1,5 +1,4 @@
 Restaurant.Server = DS.Model.extend({
-  tables: DS.hasMany('tables'),
   name: DS.attr('string')
 });
 
