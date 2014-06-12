@@ -17,52 +17,52 @@ Restaurant.MenuitemsRoute = Ember.Route.extend({
     return this.store.find('menuitem');
   }
 });
-// Restaurant.IndexRoute = Ember.Route.extend({
-//   renderTemplate: function() {
-//     this.render('index');
-//     this.render('tables', {
-//       outlet : 'tables',
-//       into   : 'index'
-//     });
-//   }
-// });
+Restaurant.IndexRoute = Ember.Route.extend({
+  renderTemplate: function() {
+    this.render('index');
+    this.render('tables', {
+      outlet : 'tables',
+      into   : 'index'
+    });
+  }
+});
 
-// Restaurant.ServersIndexRoute = Ember.Route.extend({
-//   model: function() {
-//     return this.modelFor('servers');
-//   }
-// });
+Restaurant.ServersIndexRoute = Ember.Route.extend({
+  model: function() {
+    return this.modelFor('servers');
+  }
+});
 
-// Restaurant.MenuitemsRoute = Ember.Route.extend({
-//   model: function() {
-//     return this.store.find('menuitem');
-//   }
-// });
+Restaurant.MenuitemsRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.find('menuitem');
+  }
+});
 
-// Restaurant.MenuitemsIndexRoute = Ember.Route.extend({
-//   model: function() {
-//     return this.modelFor('menuitems');
-//   }
-// });
+Restaurant.MenuitemsIndexRoute = Ember.Route.extend({
+  model: function() {
+    return this.modelFor('menuitems');
+  }
+});
 
-// Restaurant.TodosActiveRoute = Ember.Route.extend({
-//   model: function(){
-//     return this.store.filter('todo', function(todo) {
-//       return !todo.get('isCompleted');
-//     });
-//   },
-//   renderTemplate: function(controller) {
-//     this.render('todos/index', {controller: controller});
-//   }
-// });
+Restaurant.TodosActiveRoute = Ember.Route.extend({
+  model: function(){
+    return this.store.filter('todo', function(todo) {
+      return !todo.get('isCompleted');
+    });
+  },
+  renderTemplate: function(controller) {
+    this.render('todos/index', {controller: controller});
+  }
+});
 
-// Restaurant.TodosCompletedRoute = Ember.Route.extend({
-//   model: function(){
-//     return this.store.filter('todo', function(todo) {
-//       return todo.get('isCompleted');
-//     });
-//   },
-//   renderTemplate: function(controller) {
-//     this.render('todos/index', {controller: controller });
-//   }
-// });
+Restaurant.TodosCompletedRoute = Ember.Route.extend({
+  model: function(){
+    return this.store.filter('todo', function(todo) {
+      return todo.get('isCompleted');
+    });
+  },
+  renderTemplate: function(controller) {
+    this.render('todos/index', {controller: controller });
+  }
+});
